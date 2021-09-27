@@ -6,6 +6,16 @@ const submitBtn = form.querySelector("button");
 let btnPushed = false;
 
 function goPlay(event) {
+  if (generatedNum.value === "") {
+    alert("Please type a number in the first box to generate a number");
+    return;
+  }
+
+  if (userGuessingNum.value === "") {
+    alert("Please type a number in the second box to make a guess");
+    return;
+  }
+  
   event.preventDefault();
   const div = document.querySelector("div");
   const para = document.querySelector("p");
