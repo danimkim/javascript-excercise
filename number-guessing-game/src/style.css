@@ -1,0 +1,51 @@
+body {
+  font-family: "Merriweather", serif;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+#random-num-form {
+  border-radius: 10px;
+  width: 500px;
+  margin: 5px auto;
+  padding: 12px;
+  box-sizing: border-box;
+  background: #a3e4d7;
+}
+
+#random-num-form h1 {
+  text-align: center;
+}
+
+button {
+  border: 1px solid #138d75;
+  border-radius: 3px;
+  background: #138d75;
+  font-size: 10pt;
+  color: white;
+  padding: 2px 8px;
+}
+
+button:hover {
+  cursor: pointer;
+  background: white;
+  color: #138d75;
+}
+
+#div {
+  border-radius: 10px;
+  box-sizing: border-box;
+  width: 500px;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.win {
+  background: #aed6f1;
+}
+
+.lose {
+  background: #d98880;
+}
