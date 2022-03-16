@@ -1,4 +1,4 @@
-### NaN의 타입
+### NaN의 데이터타입
 
 ```js
 console.log(typeof undefined); // undefined
