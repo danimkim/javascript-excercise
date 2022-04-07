@@ -63,9 +63,8 @@
 
         button.addEventListener('click', (e) => {
             e.preventDefault()
-            console.log('입력값', mass.value, height.value)
             if(mass.value === "" || height.value === ""){
-                alert("몸무게와 키를 올바르게 입력하세요.")
+                alert("Please enter a number of your weight and height.")
                 return
             }
             const result = calculateBMI(mass.value, height.value);
