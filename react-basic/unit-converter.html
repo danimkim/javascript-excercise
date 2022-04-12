@@ -7,7 +7,7 @@
 <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
-    function App(){
+    function MinutesToHours(){
         const [amount, setAmount] = React.useState(0)
         const [switched, setSwitched] = React.useState(false)
 
@@ -20,20 +20,70 @@
         }
 
         return ( 
+            <div>
+                <div>
+                    <label htmlFor="minutes">Minute</label>
+                    <input value={switched ? amount * 60 : amount} id="minutes" type="number" placeholder="Minutes" onChange={onChange} disabled={switched}/>
+                </div>
+                <div>
+                    <label id="hours" htmlFor="hours">Hours</label>
+                    <input value={switched ? amount : Math.round(amount/60)} type="number" placeholder="Hours" onChange={onChange} disabled={!switched}/>
+                </div>
+                <div>
+                    <button onClick={reset}>Reset</button>    
+                    <button onClick={onSwitch}>Switch</button>    
+                </div>
+            </div>
+        )
+    }
+    function KmToMiles(){
+        const [amount, setAmount] = React.useState(0)
+        const [switched, setSwitched] = React.useState(false)
+
+        const onChange = (e) => setAmount(e.target.value)
+
+        const reset = () => setAmount(0)
+        const onSwitch = () => {
+            reset();
+            setSwitched(current => !current)
+        }
+
+        return ( 
+            <div>
+                <div>
+                    <label htmlFor="minutes">Kilometer</label>
+                    <input value={switched ? (amount * 1.60934).toFixed(2) : amount} id="minutes" type="number" placeholder="Minutes" onChange={onChange} disabled={switched}/>
+                </div>
+                <div>
+                    <label id="hours" htmlFor="hours">Mile</label>
+                    <input value={switched ? amount : (amount * 0.621371).toFixed(2)} type="number" placeholder="Hours" onChange={onChange} disabled={!switched}/>
+                </div>
+                <div>
+                    <button onClick={reset}>Reset</button>    
+                    <button onClick={onSwitch}>Switch</button>    
+                </div>
+            </div>
+        )
+    }
+
+    function App(){
+        const [index, setIndex] = React.useState("0")
+
+        const onSelect = (e) => {
+            setIndex(e.target.value)
+        }
+
+        return ( 
                 <React.Fragment>
-                    <h1>Super Converter</h1>
-                    <div>
-                        <label htmlFor="minutes">Minute</label>
-                        <input value={switched ? amount * 60 : amount} id="minutes" type="number" placeholder="Minutes" onChange={onChange} disabled={switched}/>
-                    </div>
-                    <div>
-                        <label id="hours" htmlFor="hours">Hours</label>
-                        <input value={switched ? amount : Math.round(amount/60)} type="number" placeholder="Hours" onChange={onChange} disabled={!switched}/>
-                    </div>
-                    <div>
-                        <button onClick={reset}>Reset</button>    
-                        <button onClick={onSwitch}>Switch</button>    
-                    </div>
+                    <h1>Unit Converter</h1>
+                    <select value={index} onChange={onSelect}>
+                        <option value="0">Select</option>    
+                        <option value="1">Minutes & Hours</option>    
+                        <option value="2">Kilometers & Miles</option>    
+                    </select>
+                    {index === "0" ? <p>Please select units</p> : null}
+                    {index === "1" ? <MinutesToHours /> : null}
+                    {index === "2" ? <KmToMiles /> : null}
                 </React.Fragment>
             )
         }
