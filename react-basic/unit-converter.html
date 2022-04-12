@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    function App(){
+        const [amount, setAmount] = React.useState(0)
+        const [switched, setSwitched] = React.useState(false)
+
+        const onChange = (e) => setAmount(e.target.value)
+
+        const reset = () => setAmount(0)
+        const onSwitch = () => {
+            reset();
+            setSwitched(current => !current)
+        }
+
+        return ( 
+                <React.Fragment>
+                    <h1>Super Converter</h1>
+                    <div>
+                        <label htmlFor="minutes">Minute</label>
+                        <input value={switched ? amount * 60 : amount} id="minutes" type="number" placeholder="Minutes" onChange={onChange} disabled={switched}/>
+                    </div>
+                    <div>
+                        <label id="hours" htmlFor="hours">Hours</label>
+                        <input value={switched ? amount : Math.round(amount/60)} type="number" placeholder="Hours" onChange={onChange} disabled={!switched}/>
+                    </div>
+                    <div>
+                        <button onClick={reset}>Reset</button>    
+                        <button onClick={onSwitch}>Switch</button>    
+                    </div>
+                </React.Fragment>
+            )
+        }
+        
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+
+</script>
+</html>
